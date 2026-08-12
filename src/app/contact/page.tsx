@@ -52,12 +52,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 bg-[#0e0914] min-h-screen space-y-12 text-gray-200">
+    <div className="pt-28 pb-20 bg-[#060b14] min-h-screen space-y-12 text-gray-200">
       {/* Header Banner */}
-      <section className="relative py-12 bg-[#100a18] border-b border-white/10">
+      <section className="relative py-12 bg-[#0a1120] border-b border-white/10">
         <DiagonalLines variant="hero" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662] bg-[#d92662]/10 px-3 py-1 rounded-full border border-[#d92662]/20">
+          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
             Get In Touch
           </span>
           <h1 className="text-4xl sm:text-6xl font-bold font-serif text-white mt-4">
@@ -87,7 +87,7 @@ export default function ContactPage() {
                   className={`p-4 rounded-2xl mb-6 text-xs flex items-center gap-3 ${
                     statusMessage.type === "success"
                       ? "bg-[#10b981]/20 border border-[#10b981]/40 text-[#10b981]"
-                      : "bg-[#d92662]/20 border border-[#d92662]/40 text-[#d92662]"
+                      : "bg-[#2563eb]/20 border border-[#2563eb]/40 text-[#38bdf8]"
                   }`}
                 >
                   {statusMessage.type === "success" ? (
@@ -111,7 +111,7 @@ export default function ContactPage() {
                       placeholder="Juan Dela Cruz"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662]"
+                      className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb]"
                     />
                   </div>
                   <div>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                       placeholder="juan@company.ph"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662]"
+                      className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb]"
                     />
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                       placeholder="+63 917 123 4567"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662]"
+                      className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb]"
                     />
                   </div>
                   <div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                       placeholder="Acme Corporation / LGU"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662]"
+                      className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb]"
                     />
                   </div>
                 </div>
@@ -163,10 +163,10 @@ export default function ContactPage() {
                   <select
                     value={formData.serviceCategory}
                     onChange={(e) => setFormData({ ...formData, serviceCategory: e.target.value })}
-                    className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662] cursor-pointer"
+                    className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb] cursor-pointer"
                   >
                     {services.map((s) => (
-                      <option key={s.slug} value={s.title} className="bg-[#191024] text-white">
+                      <option key={s.slug} value={s.title} className="bg-[#0f192e] text-white">
                         {s.title}
                       </option>
                     ))}
@@ -183,14 +183,14 @@ export default function ContactPage() {
                     placeholder="Describe your site location, camera count, cabling distance, or SLA requirement..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#191024] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d92662]"
+                    className="w-full bg-[#0f192e] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#2563eb]"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#d92662] to-[#8b5cf6] text-white font-semibold text-sm shadow-xl shadow-[#d92662]/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white font-semibold text-sm shadow-xl shadow-[#2563eb]/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {submitting ? (
                     <span>Submitting Request...</span>
@@ -213,7 +213,7 @@ export default function ContactPage() {
 
               <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3">
-                  <div className="p-2.5 rounded-xl bg-[#d92662]/20 border border-[#d92662]/30 text-[#d92662] shrink-0">
+                  <div className="p-2.5 rounded-xl bg-[#2563eb]/20 border border-[#2563eb]/30 text-[#38bdf8] shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="p-2.5 rounded-xl bg-[#8b5cf6]/20 border border-[#8b5cf6]/30 text-[#8b5cf6] shrink-0">
+                  <div className="p-2.5 rounded-xl bg-[#0284c7]/20 border border-[#0284c7]/30 text-[#38bdf8] shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="p-2.5 rounded-xl bg-[#38bdf8]/20 border border-[#38bdf8]/30 text-[#38bdf8] shrink-0">
+                  <div className="p-2.5 rounded-xl bg-[#06b6d4]/20 border border-[#06b6d4]/30 text-[#38bdf8] shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -255,7 +255,7 @@ export default function ContactPage() {
             </div>
 
             {/* Static Map / Command Center Card */}
-            <div className="glass-panel p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-[#3a2145]/60 to-[#191024] space-y-3">
+            <div className="glass-panel p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-[#1e3a8a]/60 to-[#0f192e] space-y-3">
               <span className="text-[10px] font-mono uppercase text-[#38bdf8] tracking-widest block">Deployment Zone</span>
               <h4 className="text-lg font-bold font-serif text-white">Central Luzon Operations Base</h4>
               <p className="text-xs text-gray-300 font-light leading-relaxed">

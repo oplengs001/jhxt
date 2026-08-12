@@ -44,11 +44,11 @@ export function FrameworkStrip() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-20 relative overflow-hidden bg-[#0a0610]">
+    <section ref={containerRef} className="py-20 relative overflow-hidden bg-[#040810]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662] bg-[#d92662]/10 px-3 py-1 rounded-full border border-[#d92662]/20">
+          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
             Lifecycle Engineering Model
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mt-4">
@@ -63,7 +63,7 @@ export function FrameworkStrip() {
         <div className="relative">
           {/* Progress Bar Track */}
           <div className="hidden lg:block absolute top-12 left-0 right-0 h-1 bg-white/10 -z-0">
-            <div className="progress-line-inner h-full bg-gradient-to-r from-[#d92662] via-[#8b5cf6] to-[#38bdf8] origin-left scale-x-0 transition-transform" />
+            <div className="progress-line-inner h-full bg-gradient-to-r from-[#2563eb] via-[#0284c7] to-[#38bdf8] origin-left scale-x-0 transition-transform" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
@@ -75,7 +75,7 @@ export function FrameworkStrip() {
                 <div>
                   {/* Big Letter Badge */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#d92662] to-[#3a2145] text-white flex items-center justify-center font-serif text-2xl font-bold shadow-lg shadow-[#d92662]/20">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2563eb] to-[#1e3a8a] text-white flex items-center justify-center font-serif text-2xl font-bold shadow-lg shadow-[#2563eb]/20">
                       {stage.letter}
                     </div>
                     <span className="text-xs font-mono font-bold text-gray-500 bg-white/5 px-2.5 py-1 rounded-full">
@@ -86,7 +86,7 @@ export function FrameworkStrip() {
                   <h3 className="text-xl font-bold font-serif text-white mb-1">
                     {stage.title}
                   </h3>
-                  <p className="text-xs font-semibold text-[#d92662] mb-3">
+                  <p className="text-xs font-semibold text-[#38bdf8] mb-3">
                     {stage.subtitle}
                   </p>
                   <p className="text-xs text-gray-400 leading-relaxed mb-6 font-light">
@@ -109,7 +109,7 @@ export function FrameworkStrip() {
 
                 {/* Connecting Arrow for Large Screens */}
                 {i < frameworkStages.length - 1 && (
-                  <div className="hidden lg:flex absolute -right-3 top-10 w-6 h-6 rounded-full bg-[#191024] border border-white/20 items-center justify-center text-[#d92662] z-20 shadow-md">
+                  <div className="hidden lg:flex absolute -right-3 top-10 w-6 h-6 rounded-full bg-[#0f192e] border border-white/20 items-center justify-center text-[#38bdf8] z-20 shadow-md">
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 )}

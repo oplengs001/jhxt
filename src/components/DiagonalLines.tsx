@@ -13,7 +13,7 @@ interface DiagonalLinesProps {
 export function DiagonalLines({
   className = "",
   variant = "hero",
-  color = "rgba(143, 167, 179, 0.25)"
+  color = "rgba(148, 163, 184, 0.25)"
 }: DiagonalLinesProps) {
   const containerRef = useRef<SVGSVGElement>(null);
 
@@ -66,7 +66,7 @@ export function DiagonalLines({
         />
         <path
           d="M -100 240 L 1540 740"
-          stroke="rgba(217, 38, 98, 0.3)"
+          stroke="rgba(37, 99, 235, 0.35)"
           strokeWidth="1"
         />
         <path
@@ -76,7 +76,7 @@ export function DiagonalLines({
         />
         <path
           d="M 1240 -50 L 340 950"
-          stroke="rgba(139, 92, 246, 0.25)"
+          stroke="rgba(56, 189, 248, 0.3)"
           strokeWidth="0.75"
         />
       </svg>
@@ -99,7 +99,7 @@ export function DiagonalLines({
       />
       <path
         d="M 150 10 L 450 50 M 750 10 L 1050 50"
-        stroke="rgba(217, 38, 98, 0.4)"
+        stroke="rgba(37, 99, 235, 0.4)"
         strokeWidth="1.5"
       />
     </svg>

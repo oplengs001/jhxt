@@ -5,20 +5,20 @@ import { services } from "@/content/services";
 
 export function Footer() {
   return (
-    <footer className="bg-[#08050c] border-t border-white/10 pt-16 pb-12 relative overflow-hidden text-gray-400 text-sm">
+    <footer className="bg-[#03060c] border-t border-white/10 pt-16 pb-12 relative overflow-hidden text-gray-400 text-sm">
       {/* Glow ambient background */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-t from-[#3a2145]/20 to-transparent pointer-events-none blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent pointer-events-none blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Column 1: Brand Pitch */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#3a2145] to-[#191024] border border-[#d92662]/40 flex items-center justify-center">
-                <Shield className="w-5 h-5 text-[#d92662]" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1e3a8a] to-[#0f192e] border border-[#2563eb]/40 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-[#38bdf8]" />
               </div>
               <span className="text-2xl font-bold tracking-wider font-serif text-white">
-                JHXT <span className="text-[#d92662]">.</span>
+                JHXT <span className="text-[#38bdf8]">.</span>
               </span>
             </Link>
             <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
@@ -26,13 +26,13 @@ export function Footer() {
             </p>
             <div className="pt-2 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-gray-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#d92662]" /> Founded 2024
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#38bdf8]" /> Founded 2024
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-gray-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#8b5cf6]" /> DBOT Framework
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#2563eb]" /> DBOT Framework
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-gray-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#38bdf8]" /> PMBOK Methodology
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#06b6d4]" /> PMBOK Methodology
               </span>
             </div>
           </div>
@@ -50,7 +50,7 @@ export function Footer() {
                     className="hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-1 group"
                   >
                     <span>{service.shortTitle}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#d92662] transition-opacity" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#38bdf8] transition-opacity" />
                   </Link>
                 </li>
               ))}
@@ -70,7 +70,7 @@ export function Footer() {
                     className="hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-1 group"
                   >
                     <span>{service.shortTitle}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#d92662] transition-opacity" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#38bdf8] transition-opacity" />
                   </Link>
                 </li>
               ))}
@@ -84,22 +84,22 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-xs">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#d92662] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#38bdf8] shrink-0 mt-0.5" />
                 <span>Central Luzon & Metro Manila Operational Centers, Philippines</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#8b5cf6] shrink-0" />
+                <Phone className="w-4 h-4 text-[#2563eb] shrink-0" />
                 <span>+63 (045) 900-JHXT / +63 917-123-JHXT</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#38bdf8] shrink-0" />
+                <Mail className="w-4 h-4 text-[#06b6d4] shrink-0" />
                 <span>info@jhxt-itsolutions.ph</span>
               </li>
             </ul>
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-block w-full text-center py-2 px-3 rounded-lg bg-white/5 hover:bg-[#d92662] border border-white/10 hover:border-[#d92662] text-xs text-white transition-colors font-medium"
+                className="inline-block w-full text-center py-2 px-3 rounded-lg bg-white/5 hover:bg-[#2563eb] border border-white/10 hover:border-[#2563eb] text-xs text-white transition-colors font-medium"
               >
                 24/7 SLA Help Desk Portal
               </Link>

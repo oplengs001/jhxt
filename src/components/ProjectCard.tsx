@@ -14,7 +14,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div>
         {/* Category & Location Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span className="text-[11px] font-semibold text-[#d92662] bg-[#d92662]/10 px-3 py-1 rounded-full border border-[#d92662]/20">
+          <span className="text-[11px] font-semibold text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
             {project.category}
           </span>
           <div className="flex items-center gap-3 text-xs text-gray-400 font-mono">
@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {project.location}
             </span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-[#8b5cf6]" />
+              <Calendar className="w-3.5 h-3.5 text-[#2563eb]" />
               {project.year}
             </span>
           </div>
@@ -35,7 +35,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </h3>
 
         {/* Highlight Callout */}
-        <p className="text-xs text-[#8fa7b3] italic mb-4 border-l-2 border-[#d92662] pl-3 py-0.5">
+        <p className="text-xs text-[#94a3b8] italic mb-4 border-l-2 border-[#2563eb] pl-3 py-0.5">
           "{project.highlightText}"
         </p>
 
@@ -61,7 +61,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </span>
           {project.deliverables.map((deliv, idx) => (
             <div key={idx} className="flex items-start gap-2 text-xs text-gray-300">
-              <CheckCircle2 className="w-4 h-4 text-[#d92662] shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-[#38bdf8] shrink-0 mt-0.5" />
               <span>{deliv}</span>
             </div>
           ))}

@@ -9,10 +9,7 @@ import {
   Globe,
   Headphones,
   FileCheck,
-  CheckCircle2,
-  Clock,
-  ShieldCheck,
-  ArrowRight
+  CheckCircle2
 } from "lucide-react";
 
 export const metadata = {
@@ -85,9 +82,9 @@ export default function ManagedServicesPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 bg-[#0e0914] min-h-screen space-y-16 text-gray-200">
+    <div className="pt-28 pb-20 bg-[#060b14] min-h-screen space-y-16 text-gray-200">
       {/* Header Banner */}
-      <section className="relative py-12 bg-[#100a18] border-b border-white/10">
+      <section className="relative py-12 bg-[#0a1120] border-b border-white/10">
         <DiagonalLines variant="hero" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#10b981] bg-[#10b981]/10 px-3 py-1 rounded-full border border-[#10b981]/20">
@@ -115,7 +112,7 @@ export default function ManagedServicesPage() {
             const IconComp = item.icon;
             return (
               <div key={i} className="glass-panel glass-panel-hover p-8 rounded-3xl border border-white/10 space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3a2145] to-[#191024] border border-[#d92662]/40 flex items-center justify-center text-[#d92662]">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1e3a8a] to-[#0f192e] border border-[#2563eb]/40 flex items-center justify-center text-[#38bdf8]">
                   <IconComp className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold font-serif text-white">{item.title}</h3>
@@ -129,7 +126,7 @@ export default function ManagedServicesPage() {
       {/* SLA Tiers Comparison */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662]">
+          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8]">
             Guaranteed Response Times
           </span>
           <h2 className="text-3xl font-bold font-serif text-white mt-2">
@@ -143,12 +140,12 @@ export default function ManagedServicesPage() {
               key={i}
               className={`glass-panel p-8 rounded-3xl border relative flex flex-col justify-between ${
                 plan.recommended
-                  ? "border-[#d92662] bg-gradient-to-br from-[#3a2145]/80 to-[#191024]"
+                  ? "border-[#2563eb] bg-gradient-to-br from-[#1e3a8a]/80 to-[#0f192e]"
                   : "border-white/10"
               }`}
             >
               {plan.recommended && (
-                <span className="absolute -top-3 right-6 text-[10px] font-bold font-mono uppercase bg-[#d92662] text-white px-3 py-1 rounded-full shadow-lg">
+                <span className="absolute -top-3 right-6 text-[10px] font-bold font-mono uppercase bg-[#2563eb] text-white px-3 py-1 rounded-full shadow-lg">
                   Most Popular Choice
                 </span>
               )}
@@ -160,11 +157,11 @@ export default function ManagedServicesPage() {
                 <div className="space-y-3 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5 text-xs">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400 font-mono">Remote Help Desk Response</span>
-                    <span className="font-bold text-[#d92662]">{plan.response}</span>
+                    <span className="font-bold text-[#38bdf8]">{plan.response}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400 font-mono">Onsite Field Response</span>
-                    <span className="font-bold text-[#8b5cf6]">{plan.onsite}</span>
+                    <span className="font-bold text-[#2563eb]">{plan.onsite}</span>
                   </div>
                 </div>
 
@@ -183,7 +180,7 @@ export default function ManagedServicesPage() {
                 href="/contact"
                 className={`w-full py-3 rounded-full font-semibold text-xs text-center transition-colors shadow-lg ${
                   plan.recommended
-                    ? "bg-[#d92662] hover:bg-[#b01c4d] text-white shadow-[#d92662]/30"
+                    ? "bg-[#2563eb] hover:bg-[#1d4ed8] text-white shadow-[#2563eb]/30"
                     : "bg-white/10 hover:bg-white/20 text-white"
                 }`}
               >

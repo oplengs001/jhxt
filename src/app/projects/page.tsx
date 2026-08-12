@@ -2,7 +2,6 @@ import React from "react";
 import { projects } from "@/content/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { DiagonalLines } from "@/components/DiagonalLines";
-import { MapPin, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export const metadata = {
   title: "Projects & Proof of Work — JHXT Case Studies",
@@ -11,9 +10,9 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="pt-28 pb-20 bg-[#0e0914] min-h-screen space-y-12">
+    <div className="pt-28 pb-20 bg-[#060b14] min-h-screen space-y-12">
       {/* Header Banner */}
-      <section className="relative py-12 bg-[#100a18] border-b border-white/10">
+      <section className="relative py-12 bg-[#0a1120] border-b border-white/10">
         <DiagonalLines variant="hero" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">

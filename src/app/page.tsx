@@ -10,7 +10,7 @@ import { services } from "@/content/services";
 import { projects } from "@/content/projects";
 import { useGSAP } from "@gsap/react";
 import { gsap, checkReducedMotion } from "@/lib/gsap";
-import { ArrowRight, ShieldCheck, Cpu, Headphones, CheckCircle2, PhoneCall } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 
 export default function Home() {
   const serviceGridRef = useRef<HTMLDivElement>(null);
@@ -38,11 +38,11 @@ export default function Home() {
       <Hero />
 
       {/* 2. Company Pitch & Core Pillars Teaser */}
-      <section className="py-20 bg-[#0e0914] relative">
+      <section className="py-20 bg-[#060b14] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662] bg-[#d92662]/10 px-3 py-1 rounded-full border border-[#d92662]/20">
+              <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
                 Full-Spectrum Portfolio
               </span>
               <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mt-4">
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-[#d92662] border border-white/10 hover:border-[#d92662] text-sm text-white font-medium transition-colors shrink-0"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-[#2563eb] border border-white/10 hover:border-[#2563eb] text-sm text-white font-medium transition-colors shrink-0"
             >
               View Full Catalog <ArrowRight className="w-4 h-4" />
             </Link>
@@ -70,7 +70,7 @@ export default function Home() {
           <div className="mt-12 text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#8fa7b3] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#94a3b8] hover:text-white transition-colors"
             >
               + 7 More Service Pillars (Access Control, Boom Barriers, X-Ray, FDAS, Turnstiles) →
             </Link>
@@ -82,7 +82,7 @@ export default function Home() {
       <FrameworkStrip />
 
       {/* 4. Proof of Work / Featured Case Studies */}
-      <section className="py-20 bg-[#0e0914] relative">
+      <section className="py-20 bg-[#060b14] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
@@ -114,10 +114,10 @@ export default function Home() {
       </section>
 
       {/* 5. Call-To-Action Banner */}
-      <section className="py-20 bg-gradient-to-r from-[#191024] via-[#2d193a] to-[#191024] relative overflow-hidden border-y border-white/10">
+      <section className="py-20 bg-gradient-to-r from-[#0f192e] via-[#1e3a8a] to-[#0f192e] relative overflow-hidden border-y border-white/10">
         <div className="absolute inset-0 bg-radial-glow opacity-50 pointer-events-none" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662]">
+          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8]">
             Ready to Upgrade Your Infrastructure?
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mt-3">
@@ -130,7 +130,7 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#d92662] to-[#8b5cf6] text-white font-semibold text-sm shadow-xl shadow-[#d92662]/30 hover:scale-105 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white font-semibold text-sm shadow-xl shadow-[#2563eb]/30 hover:scale-105 transition-all"
             >
               <PhoneCall className="w-4 h-4" /> Get Your Custom Quote
             </Link>

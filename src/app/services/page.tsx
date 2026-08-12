@@ -40,12 +40,12 @@ export default function ServicesPage() {
   });
 
   return (
-    <div className="pt-28 pb-20 space-y-12 bg-[#0e0914] min-h-screen">
+    <div className="pt-28 pb-20 space-y-12 bg-[#060b14] min-h-screen">
       {/* Header Banner */}
-      <section className="relative py-12 bg-[#100a18] border-b border-white/10">
+      <section className="relative py-12 bg-[#0a1120] border-b border-white/10">
         <DiagonalLines variant="hero" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#d92662] bg-[#d92662]/10 px-3 py-1 rounded-full border border-[#d92662]/20">
+          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
             Comprehensive Solutions Catalog
           </span>
           <h1 className="text-4xl sm:text-6xl font-bold font-serif text-white mt-4">
@@ -64,17 +64,17 @@ export default function ServicesPage() {
                 placeholder="Search services (e.g. CCTV, Fiber, AI, Gate, FDAS)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#191024] border border-white/15 rounded-full pl-12 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#d92662]"
+                className="w-full bg-[#0f192e] border border-white/15 rounded-full pl-12 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb]"
               />
             </div>
             <div className="relative">
               <select
                 value={selectedBadge}
                 onChange={(e) => setSelectedBadge(e.target.value)}
-                className="w-full sm:w-auto bg-[#191024] border border-white/15 rounded-full px-5 py-3 text-sm text-gray-200 focus:outline-none focus:border-[#d92662] cursor-pointer appearance-none pr-10"
+                className="w-full sm:w-auto bg-[#0f192e] border border-white/15 rounded-full px-5 py-3 text-sm text-gray-200 focus:outline-none focus:border-[#2563eb] cursor-pointer appearance-none pr-10"
               >
                 {badges.map((b) => (
-                  <option key={b} value={b} className="bg-[#191024] text-white">
+                  <option key={b} value={b} className="bg-[#0f192e] text-white">
                     {b === "all" ? "All Categories" : b}
                   </option>
                 ))}
@@ -95,7 +95,7 @@ export default function ServicesPage() {
                 setSearchQuery("");
                 setSelectedBadge("all");
               }}
-              className="mt-4 px-4 py-2 rounded-full bg-[#d92662] text-white text-xs font-semibold"
+              className="mt-4 px-4 py-2 rounded-full bg-[#2563eb] text-white text-xs font-semibold"
             >
               Reset Filters
             </button>

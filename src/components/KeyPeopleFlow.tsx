@@ -34,7 +34,7 @@ export function KeyPeopleFlow() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-20 bg-[#0a0610] relative overflow-hidden">
+    <section ref={containerRef} className="py-20 bg-[#040810] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -61,7 +61,7 @@ export function KeyPeopleFlow() {
                 <div>
                   {/* Icon & Step Header */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3a2145] to-[#191024] border border-[#d92662]/40 flex items-center justify-center text-[#d92662] shadow-lg">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1e3a8a] to-[#0f192e] border border-[#2563eb]/40 flex items-center justify-center text-[#38bdf8] shadow-lg">
                       <IconComp className="w-6 h-6" />
                     </div>
                     <span className="text-xs font-mono font-bold text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/5">
@@ -86,7 +86,7 @@ export function KeyPeopleFlow() {
                     </span>
                     {node.responsibilities.map((resp, idx) => (
                       <div key={idx} className="text-[11px] text-gray-300 flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d92662] mt-1 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563eb] mt-1 shrink-0" />
                         <span>{resp}</span>
                       </div>
                     ))}
@@ -95,7 +95,7 @@ export function KeyPeopleFlow() {
 
                 {/* SLA Footer */}
                 <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-xs text-[#d92662] font-semibold">
+                  <div className="flex items-center gap-1.5 text-xs text-[#38bdf8] font-semibold">
                     <Clock className="w-3.5 h-3.5" />
                     <span>{node.sla}</span>
                   </div>

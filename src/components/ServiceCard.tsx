@@ -48,12 +48,12 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
   return (
     <div className="service-card glass-panel glass-panel-hover p-6 rounded-3xl border border-white/10 flex flex-col justify-between h-full group relative overflow-hidden">
       {/* Background Subtle Gradient Accent */}
-      <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#d92662]/10 rounded-full blur-2xl group-hover:bg-[#d92662]/20 transition-all pointer-events-none" />
+      <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#2563eb]/10 rounded-full blur-2xl group-hover:bg-[#2563eb]/20 transition-all pointer-events-none" />
 
       <div>
         {/* Top Header Row */}
         <div className="flex items-center justify-between mb-4">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3a2145] to-[#191024] border border-[#d92662]/40 flex items-center justify-center text-[#d92662] group-hover:scale-110 transition-transform shadow-lg">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1e3a8a] to-[#0f192e] border border-[#2563eb]/40 flex items-center justify-center text-[#38bdf8] group-hover:scale-110 transition-transform shadow-lg">
             <IconComponent className="w-6 h-6" />
           </div>
           <span className="text-xs font-mono font-bold text-gray-500 bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
@@ -63,7 +63,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
 
         {/* Title & Badge */}
         {service.badge && (
-          <span className="inline-block mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#d92662] bg-[#d92662]/10 px-2.5 py-0.5 rounded-full border border-[#d92662]/20">
+          <span className="inline-block mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#38bdf8] bg-[#38bdf8]/10 px-2.5 py-0.5 rounded-full border border-[#38bdf8]/20">
             {service.badge}
           </span>
         )}
@@ -83,7 +83,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
               key={i}
               className="text-[11px] text-gray-300 flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#d92662] shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
               <span className="truncate">{bullet}</span>
             </li>
           ))}
@@ -91,9 +91,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       </div>
 
       {/* Card Action Footer */}
-      <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-[#8fa7b3] group-hover:text-white transition-colors">
+      <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-[#94a3b8] group-hover:text-white transition-colors">
         <span>Explore Specifications</span>
-        <div className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-[#d92662] flex items-center justify-center transition-colors">
+        <div className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-[#2563eb] flex items-center justify-center transition-colors">
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </div>
       </div>
