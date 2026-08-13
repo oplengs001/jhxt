@@ -1,9 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Shield, Phone, Mail, MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { services } from "@/content/services";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/invoices")) {
+    return null;
+  }
   return (
     <footer className="bg-[#03060c] border-t border-white/10 pt-16 pb-12 relative overflow-hidden text-gray-400 text-sm">
       {/* Glow ambient background */}

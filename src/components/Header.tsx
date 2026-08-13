@@ -24,8 +24,13 @@ export function Header() {
     { name: "Service Pillars", href: "/services" },
     { name: "Projects & Proof", href: "/projects" },
     { name: "Managed IT", href: "/managed-services" },
+    { name: "Invoices", href: "/invoices" },
     { name: "Contact Us", href: "/contact" },
   ];
+
+  if (pathname.startsWith("/invoices")) {
+    return null;
+  }
 
   return (
     <header

@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// -------------------------------------------------------------
+// JHXT Invoicing System & Sales CRM Models
+// -------------------------------------------------------------
+
+enum Role {
+  ADMIN
+  SALES
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  PARTIAL
+  OVERDUE
+  CANCELLED
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL_SENT
+  NEGOTIATING
+  WON
+  LOST
+}
+
+model AdminUser {
+  id            String      @id @default(uuid())
+  name          String
+  email         String      @unique
+  passwordHash  String
+  role          Role        @default(SALES)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  invoices      Invoice[]
+  assignedLeads Lead[]      @relation("AssignedLeads")
+  leadNotes     LeadNote[]
+}
+
+model Client {
+  id        String    @id @default(uuid())
+  name      String
+  email     String?
+  company   String?
+  address   String?
+  phone     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  invoices  Invoice[]
+  leads     Lead[]
+}
+
+model ProductItem {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  unitPrice   Int      // centavos
+  unit        String   @default("pcs")
+  category    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([name])
+  @@index([category])
+}
+
+model Lead {
+  id                String       @id @default(uuid())
+  name              String
+  company           String?
+  email             String?
+  phone             String?
+  address           String?
+  source            String?      @default("Website")
+  status            LeadStatus   @default(NEW)
+  valueEstimate     Int          @default(0) // Estimated contract value in centavos
+  assignedToId      String
+  assignedTo        AdminUser    @relation("AssignedLeads", fields: [assignedToId], references: [id])
+  convertedClientId String?
+  convertedClient   Client?      @relation(fields: [convertedClientId], references: [id])
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  notes             LeadNote[]
+
+  @@index([assignedToId])
+  @@index([status])
+}
+
+model LeadNote {
+  id          String    @id @default(uuid())
+  leadId      String
+  lead        Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdById String
+  createdBy   AdminUser @relation(fields: [createdById], references: [id])
+  content     String
+  createdAt   DateTime  @default(now())
+
+  @@index([leadId])
+}
+
+model Invoice {
+  id            String         @id @default(uuid())
+  invoiceNumber String         @unique
+  clientId      String
+  client        Client         @relation(fields: [clientId], references: [id])
+  createdById   String
+  createdBy     AdminUser      @relation(fields: [createdById], references: [id])
+  status        InvoiceStatus  @default(DRAFT)
+  issueDate     DateTime       @default(now())
+  dueDate       DateTime
+  notes         String?
+  taxPercent    Float          @default(0)
+  discountAmt   Int            @default(0) // centavos
+  subtotalAmt   Int            @default(0) // centavos
+  taxAmt        Int            @default(0) // centavos
+  totalAmt      Int            @default(0) // centavos
+  portalToken   String         @unique @default(uuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  items         InvoiceItem[]
+  payments      InvoicePayment[]
+
+  @@index([invoiceNumber])
+  @@index([portalToken])
+}
+
+model InvoiceItem {
+  id          String   @id @default(uuid())
+  invoiceId   String
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Float    @default(1)
+  unitPrice   Int      // centavos
+  totalPrice  Int      // centavos
+  sortOrder   Int      @default(0)
+}
+
+model InvoicePayment {
+  id          String   @id @default(uuid())
+  invoiceId   String
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  amountPaid  Int      // centavos
+  paymentDate DateTime @default(now())
+  method      String   @default("CASH")
+  reference   String?
+  notes       String?
+  createdAt   DateTime @default(now())
+}
