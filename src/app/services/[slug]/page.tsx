@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { services } from "@/content/services";
 import { DiagonalLines } from "@/components/DiagonalLines";
+import { PillarHeroImage } from "@/components/PillarHeroImage";
 import {
   Camera,
   Cable,
@@ -117,6 +118,15 @@ export default async function ServiceDetailPage({
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Pillar Hero Image / Placeholder */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <PillarHeroImage
+          imagePath={service.image || `/services/${service.slug}.jpg`}
+          title={service.title}
+          caption={service.imageCaption}
+        />
       </section>
 
       {/* Main Content Details Grid */}

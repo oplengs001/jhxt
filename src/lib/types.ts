@@ -10,6 +10,10 @@ export type ServicePillar = {
   applications: string[];
   specs: { label: string; value: string }[];
   badge?: string;
+  /** Path to the pillar hero image inside /public — e.g. "/services/surveillance.jpg" */
+  image?: string;
+  /** Short caption shown on image placeholders */
+  imageCaption?: string;
 };
 
 export type CaseStudy = {

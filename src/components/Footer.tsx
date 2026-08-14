@@ -2,8 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Shield, Phone, Mail, MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { services } from "@/content/services";
 
 export function Footer() {
@@ -21,9 +22,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Column 1: Brand Pitch */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1e3a8a] to-[#0f192e] border border-[#2563eb]/40 flex items-center justify-center">
-                <Shield className="w-5 h-5 text-[#38bdf8]" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-9 h-9 rounded-xl overflow-hidden ring-1 ring-[#2563eb]/40 shadow-md shadow-[#2563eb]/20">
+                <Image
+                  src="/icon.jpg"
+                  alt="JHXTES Logo"
+                  fill
+                  sizes="36px"
+                  className="object-cover"
+                />
               </div>
               <span className="text-2xl font-bold tracking-wider font-serif text-white">
                 JHXTES <span className="text-[#38bdf8]">.</span>

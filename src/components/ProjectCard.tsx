@@ -2,15 +2,18 @@
 
 import React from "react";
 import { CaseStudy } from "@/lib/types";
-import { MapPin, Calendar, CheckCircle2, ArrowRight } from "lucide-react";
+import { MapPin, Calendar, CheckCircle2, ArrowRight, ShieldCheck } from "lucide-react";
+import { TechPlaceholder } from "@/components/TechPlaceholder";
 
 interface ProjectCardProps {
   project: CaseStudy;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const imagePath = project.image || `/images/projects/${project.id}.jpg`;
+
   return (
-    <div className="glass-panel glass-panel-hover p-6 rounded-3xl border border-white/10 flex flex-col justify-between group h-full">
+    <div className="glass-panel glass-panel-hover p-6 rounded-3xl border border-white/10 flex flex-col justify-between group h-full transition-all duration-300">
       <div>
         {/* Category & Location Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
@@ -29,14 +32,27 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
 
+        {/* 📷 Project Deployment Image / Proof of Work Placeholder */}
+        <div className="mb-4">
+          <TechPlaceholder
+            guidePath={imagePath}
+            title={`${project.title} Proof Photo`}
+            subtitle={project.highlightText || "On-site verified installation photography"}
+            icon={ShieldCheck}
+            ratio="16:9"
+            dimensions="1200 × 675 px (16:9)"
+            tag="CASE STUDY PROOF"
+          />
+        </div>
+
         {/* Title */}
-        <h3 className="text-2xl font-bold font-serif text-white group-hover:text-gradient-magenta transition-colors mb-3">
+        <h3 className="text-xl sm:text-2xl font-bold font-serif text-white group-hover:text-gradient-magenta transition-colors mb-3">
           {project.title}
         </h3>
 
         {/* Highlight Callout */}
         <p className="text-xs text-[#94a3b8] italic mb-4 border-l-2 border-[#2563eb] pl-3 py-0.5">
-          "{project.highlightText}"
+          &quot;{project.highlightText}&quot;
         </p>
 
         {/* Summary */}

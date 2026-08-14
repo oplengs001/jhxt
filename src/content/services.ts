@@ -7,6 +7,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Surveillance & CCTV",
     iconName: "Camera",
     badge: "Enterprise Security",
+    image: "/services/surveillance-solutions.jpg",
+    imageCaption: "IP Camera array installed at Tarlac City Command Center — 4K dome and PTZ units",
     summary: "End-to-end CCTV system design, deployment, and 24/7 maintenance across wired and wireless infrastructure.",
     description: "JHXTES delivers industrial-grade surveillance ecosystems engineered for high-density environments, municipal control rooms, and commercial facilities. We integrate high-resolution digital IP and analog camera networks with wireless microwave links and centralized monitoring centers.",
     bullets: [
@@ -35,6 +37,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Structured Cabling",
     iconName: "Cable",
     badge: "Infrastructure Backbone",
+    image: "/services/cabling-solutions.jpg",
+    imageCaption: "Organized patch panel and rack cabinet after JHXTES cable rehabilitation — Cat6A runs",
     summary: "High-performance copper horizontal cabling, fiber backbone installation, termination, testing, and cabinet rehabilitation.",
     description: "A resilient physical layer is the foundation of modern IT infrastructure. JHXTES provides certified copper and fiber optic cabling solutions compliant with TIA/EIA standards, ensuring maximum bandwidth, low latency, and organized rack cabinets.",
     bullets: [
@@ -63,6 +67,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Network & Wireless",
     iconName: "Network",
     badge: "High-Speed Connectivity",
+    image: "/services/network-solution.jpg",
+    imageCaption: "Enterprise core switch rack and wireless access point deployment — Wi-Fi 6 multi-floor setup",
     summary: "Robust LAN architecture, IP Radio microwave links, enterprise wireless LAN, and next-gen network security.",
     description: "JHXTES designs, deploys, and secures high-availability enterprise networks. From enterprise LAN switching and VLAN segmentation to outdoor microwave point-to-point links and wireless mesh networks, we keep your business connected.",
     bullets: [
@@ -91,6 +97,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Telephony & IP-PBX",
     iconName: "PhoneCall",
     badge: "Voice & Contact Center",
+    image: "/services/telephony-solution.jpg",
+    imageCaption: "IP-PBX server and SIP desk phone deployment in a corporate contact center environment",
     summary: "Integrated contact center solutions, IP/Analog/Digital PABX systems, and VoIP communication channels.",
     description: "Modernize corporate voice communications with JHXTES's unified telephony architectures. We deliver scalable IP-PBX systems, call center agent setups, IVR menus, and traditional analog PBX migrations.",
     bullets: [
@@ -119,6 +127,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Smart Door Locks",
     iconName: "Lock",
     badge: "Smart Access Control",
+    image: "/services/electronic-door-lock.jpg",
+    imageCaption: "UL10C fire-rated smart door lock installed on a server room entry — RFID + PIN credential",
     summary: "Centralized access management featuring real-time wireless control, multi-ID tech, and UL10C fire resistance.",
     description: "Upgrade facility security with intelligent electronic door locks. Engineered with UL10C 3-hour fire resistance ratings, real-time wireless status reporting, and multi-modal credentials (RFID, Keypad, PIN, Mobile Bluetooth).",
     bullets: [
@@ -147,6 +157,8 @@ export const services: ServicePillar[] = [
     shortTitle: "AI Vision & Analytics",
     iconName: "BrainCircuit",
     badge: "Intelligent Video",
+    image: "/services/cctv-ai-technology.jpg",
+    imageCaption: "AI analytics dashboard showing live ANPR license plate detection and heat map overlays",
     summary: "Next-gen AI camera surveillance: Facial recognition, people counting, thermal scanning, LPR, and perimeter intrusion.",
     description: "Transform video monitoring from passive recording into proactive intelligence. JHXTES AI vision systems automatically identify license plates, detect unauthorized perimeter breaches, count foot traffic, and monitor thermal anomalies in real time.",
     bullets: [
@@ -175,6 +187,8 @@ export const services: ServicePillar[] = [
     shortTitle: "FDAS Systems",
     iconName: "Flame",
     badge: "Life Safety",
+    image: "/services/fire-detection-alarm.jpg",
+    imageCaption: "Addressable FDAS control panel and smoke detector installation in a commercial building",
     summary: "Addressable and conventional fire alarm installations, smoke detectors, pull stations, and emergency warning horns.",
     description: "Protect life and assets with JHXTES's certified Fire Detection and Alarm Systems (FDAS). We design fully addressable systems that pinpoint exact alarm zones, triggering automated ventilation shutdown and emergency evacuation signals.",
     bullets: [
@@ -203,6 +217,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Access Control",
     iconName: "ShieldCheck",
     badge: "Perimeter Security",
+    image: "/services/access-control.jpg",
+    imageCaption: "Biometric facial recognition terminal at a corporate HQ entry — multi-factor access control",
     summary: "Biometric fingerprint, face recognition, RFID card readers, and centralized time-attendance management software.",
     description: "Control who enters your physical facilities with JHXTES access control solutions. Enforce strict permissions per department, track visitor logs, and integrate attendance records directly into payroll software.",
     bullets: [
@@ -231,6 +247,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Boom Barriers",
     iconName: "Construction",
     badge: "Traffic Management",
+    image: "/services/parking-boom-barrier.jpg",
+    imageCaption: "Heavy-duty boom barrier gate with UHF RFID reader at a subdivision entrance — hands-free entry",
     summary: "Automated high-speed vehicle barrier gates, loop detectors, RFID long-range tags, and ticketing systems.",
     description: "Streamline vehicle entrance and exit flows with JHXTES heavy-duty parking boom barriers. Integrated with ANPR cameras and long-range UHF RFID tags for seamless hands-free entry.",
     bullets: [
@@ -259,6 +277,8 @@ export const services: ServicePillar[] = [
     shortTitle: "X-Ray Scanners",
     iconName: "Scan",
     badge: "Inspection Tech",
+    image: "/services/xray-baggage-scanner.jpg",
+    imageCaption: "Dual-energy X-ray baggage scanner at a government checkpoint — color-coded organic/metal separation",
     summary: "Dual-energy X-ray screening machines for luggage, parcels, and cargo with organic/inorganic color identification.",
     description: "Provide high-assurance security screening at entry checkpoints. JHXTES X-ray inspection systems feature multi-energy imaging that highlights explosives, weapons, drugs, and contraband with color-coded material separation.",
     bullets: [
@@ -287,6 +307,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Metal Detectors",
     iconName: "Footprints",
     badge: "Personal Security",
+    image: "/services/walkthrough-metal-detector.jpg",
+    imageCaption: "33-zone walkthrough metal detector archway at a shopping mall entrance — LED threat zone display",
     summary: "Multi-zone walkthrough detection archways with LED zone positioning, sensitivity tuning, and pass-through counters.",
     description: "Screen individuals rapidly without causing queues. Our multi-zone walkthrough metal detectors pinpoint the exact height and side of concealed metal objects using bright LED indicator columns.",
     bullets: [
@@ -315,6 +337,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Turnstiles & Gates",
     iconName: "DoorClosed",
     badge: "Crowd Control",
+    image: "/services/turnstile.jpg",
+    imageCaption: "Optical flap speed gate turnstiles in a corporate lobby — stainless steel with LED indicators",
     summary: "Tripod turnstiles, flap barriers, and optical speed gates integrated with access readers and emergency auto-drop.",
     description: "Manage pedestrian access smoothly in lobbies, transit stations, and office entrances. JHXTES turnstiles combine sleek stainless steel aesthetics with high-speed brushless motors and anti-tailgating sensors.",
     bullets: [
@@ -343,6 +367,8 @@ export const services: ServicePillar[] = [
     shortTitle: "Managed IT Services",
     iconName: "Headphones",
     badge: "24/7 Outsourcing",
+    image: "/services/managed-services.jpg",
+    imageCaption: "JHXTES technician performing server rack maintenance and preventative hardware cleaning on-site",
     summary: "Comprehensive computer repair, server maintenance, backup & recovery, website dev, and dedicated onsite SLA support.",
     description: "Focus on growing your core business while JHXTES manages your complete IT ecosystem. From desktop/laptop repair and automated cloud backups to full IT outsourcing and custom website maintenance.",
     bullets: [
