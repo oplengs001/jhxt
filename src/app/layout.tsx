@@ -18,6 +18,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jhxtes.com"),
   title: "JHXTES — Information Technology Solutions | Digital Transformation Partner",
   description: "Enterprise surveillance, structured cabling, IP networking, unified communications, fire detection, access control, and managed IT services across the Philippines.",
   keywords: [
@@ -28,13 +29,37 @@ export const metadata: Metadata = {
     "Network Security IP Radio",
     "AI Vision ANPR",
     "Access Control FDAS",
-    "Managed IT Services Tarlac"
+    "Managed IT Services Tarlac",
   ],
   authors: [{ name: "JHXTES IT Solutions" }],
+  icons: {
+    icon: [
+      { url: "/icon.jpg", type: "image/jpeg" },
+    ],
+    apple: [
+      { url: "/icon.jpg", type: "image/jpeg" },
+    ],
+  },
   openGraph: {
     title: "JHXTES IT Solutions — Architecture, Security & Managed Services",
-    description: "Design → Build → Operate → Transfer digital transformation framework.",
+    description: "Design → Build → Operate → Transfer. Enterprise-grade surveillance, cabling, IP networking, AI vision, access control & 24/7 managed IT services across the Philippines.",
     type: "website",
+    url: "https://jhxtes.com",
+    siteName: "JHXTES IT Solutions",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "JHXTES IT Solutions — Architecture, Security & Managed Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JHXTES IT Solutions — Architecture, Security & Managed Services",
+    description: "Design → Build → Operate → Transfer. Enterprise-grade surveillance, cabling, IP networking, AI vision, access control & 24/7 managed IT services across the Philippines.",
+    images: ["/og-image.jpg"],
   },
 };
 
