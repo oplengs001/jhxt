@@ -238,7 +238,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="font-bold text-white block">Email Enquiries</span>
-                    <span className="text-gray-300">info@jhxt-itsolutions.ph</span>
+                    <a href="mailto:sales@jhxtes.com" className="text-gray-300 hover:text-[#38bdf8] transition-colors">
+                      sales@jhxtes.com
+                    </a>
                   </div>
                 </div>
 
