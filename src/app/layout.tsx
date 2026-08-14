@@ -18,10 +18,10 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "JHXT — Information Technology Solutions | Digital Transformation Partner",
-  description: "Enterprise surveillance solutions, structured cabling, IP networking, AI vision, access control, and 24/7 managed IT services powered by the DBOT framework.",
+  title: "JHXTES — Information Technology Solutions | Digital Transformation Partner",
+  description: "Enterprise surveillance, structured cabling, IP networking, unified communications, fire detection, access control, and managed IT services across the Philippines.",
   keywords: [
-    "JHXT",
+    "JHXTES",
     "IT Solutions Philippines",
     "CCTV Surveillance",
     "Structured Cabling Cat6 Fiber",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     "Access Control FDAS",
     "Managed IT Services Tarlac"
   ],
-  authors: [{ name: "JHXT IT Solutions" }],
+  authors: [{ name: "JHXTES IT Solutions" }],
   openGraph: {
-    title: "JHXT IT Solutions — Architecture, Security & Managed Services",
+    title: "JHXTES IT Solutions — Architecture, Security & Managed Services",
     description: "Design → Build → Operate → Transfer digital transformation framework.",
     type: "website",
   },

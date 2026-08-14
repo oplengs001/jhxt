@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "Thank you! Your quote request has been received. A JHXT engineer will reach out within 24 hours.",
+      message: "Thank you! Your quote request has been received. A JHXTES engineer will reach out within 24 hours.",
     });
   } catch (err) {
     console.error("Contact API Route Error:", err);

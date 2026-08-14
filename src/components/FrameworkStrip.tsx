@@ -52,7 +52,7 @@ export function FrameworkStrip() {
             Lifecycle Engineering Model
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mt-4">
-            The JHXT <span className="italic text-gradient-magenta">DBOT Framework</span>
+            The JHXTES <span className="italic text-gradient-magenta">DBOT Framework</span>
           </h2>
           <p className="text-sm text-gray-400 mt-3 font-light">
             Design → Build → Operate → Transfer. Our end-to-end methodology guarantees accountability from initial blueprinting to post-handover ownership.

@@ -6,8 +6,8 @@ import { DiagonalLines } from "@/components/DiagonalLines";
 import { ShieldCheck, Award, Target, Users } from "lucide-react";
 
 export const metadata = {
-  title: "About JHXT — Framework, Methodology & Team Structure",
-  description: "Learn about JHXT Information Technology Solutions, our DBOT lifecycle framework, PMBOK project execution cycle, and 4-tier support team model.",
+  title: "About JHXTES — Framework, Methodology & Team Structure",
+  description: "Learn about JHXTES Information Technology Solutions, our DBOT lifecycle framework, PMBOK project execution cycle, and 4-tier support team model.",
 };
 
 export default function AboutPage() {
@@ -18,14 +18,13 @@ export default function AboutPage() {
         <DiagonalLines variant="hero" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#38bdf8] bg-[#38bdf8]/10 px-3 py-1 rounded-full border border-[#38bdf8]/20">
-            Who is JHXT
+            Who is JHXTES
           </span>
-          <h1 className="text-4xl sm:text-6xl font-bold font-serif text-white mt-4">
-            Digital Transformation <br />
-            <span className="italic text-gradient-magenta">Technology Partner</span>
+          <h1 className="text-4xl sm:text-6xl font-bold font-serif text-white mt-4 tracking-tight">
+            Engineering Tomorrow&apos;s Infrastructure Today
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-            Founded in 2024, JHXT is an end-to-end information technology solutions provider delivering high-performance software, physical security systems, structured cabling, IP networking, and managed IT services across the Philippines.
+          <p className="text-gray-400 text-lg mt-6 leading-relaxed max-w-3xl">
+            Founded in 2024, JHXTES is an end-to-end information technology solutions provider delivering high-performance software, physical security systems, structured cabling, IP networking, and managed IT services across the Philippines.
           </p>
         </div>
       </section>

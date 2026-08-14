@@ -136,11 +136,11 @@ async function main() {
         status: "SENT",
         issueDate: new Date(),
         dueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
-        notes: "Thank you for choosing JHXT IT Solutions! Payment is due within 15 days.",
-        taxPercent: 12.0,
+        notes: "Thank you for choosing JHXTES IT Solutions! Payment is due within 15 days.",
+        taxPercent: 0.0,
         subtotalAmt: 4600000,
-        taxAmt: 552000,
-        totalAmt: 5152000,
+        taxAmt: 0,
+        totalAmt: 4600000,
         items: {
           create: [
             {

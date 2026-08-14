@@ -71,7 +71,7 @@ export default function ClientPortalInvoicePage({
             <Shield className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-bold font-serif text-white">JHXT Client Portal</h1>
+            <h1 className="text-lg font-bold font-serif text-white">JHXTES Client Portal</h1>
             <p className="text-[11px] text-[#38bdf8] font-mono">Invoice #{invoice.invoiceNumber}</p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function ClientPortalInvoicePage({
 
           <div className="space-y-1 text-left md:text-right font-mono">
             <span className="text-gray-400 uppercase text-[10px]">Issued By:</span>
-            <div className="text-sm font-bold text-white">JHXT IT SOLUTIONS</div>
+            <div className="text-sm font-bold text-white">JHXTES IT SOLUTIONS</div>
             <div className="text-gray-400">Tarlac City, Philippines</div>
             <div className="text-gray-400">Email: info@jhxt.com</div>
           </div>
@@ -167,7 +167,7 @@ export default function ClientPortalInvoicePage({
           <div className="space-y-2 max-w-md">
             <span className="font-semibold text-white font-serif">Payment Notes & Instructions:</span>
             <p className="text-gray-400 font-light leading-relaxed">
-              {invoice.notes || "Please settle payments directly with JHXT management."}
+              {invoice.notes || "Please settle payments directly with JHXTES management."}
             </p>
           </div>
 
@@ -182,10 +182,7 @@ export default function ClientPortalInvoicePage({
                 <span>-{formatPHP(invoice.discountAmt)}</span>
               </div>
             )}
-            <div className="flex justify-between text-gray-400">
-              <span>VAT / Tax ({invoice.taxPercent}%):</span>
-              <span className="text-white">+{formatPHP(invoice.taxAmt)}</span>
-            </div>
+
             <div className="flex justify-between text-base font-bold text-white border-t border-white/10 pt-2">
               <span>Total Amount:</span>
               <span className="text-[#38bdf8]">{formatPHP(invoice.totalAmt)}</span>

@@ -26,7 +26,7 @@ export function Footer() {
                 <Shield className="w-5 h-5 text-[#38bdf8]" />
               </div>
               <span className="text-2xl font-bold tracking-wider font-serif text-white">
-                JHXT <span className="text-[#38bdf8]">.</span>
+                JHXTES <span className="text-[#38bdf8]">.</span>
               </span>
             </Link>
             <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
@@ -97,7 +97,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#2563eb] shrink-0" />
-                <span>+63 (045) 900-JHXT / +63 917-123-JHXT</span>
+                <span>+63 (045) 900-JHXTES / +63 917-123-JHXTES</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#06b6d4] shrink-0" />
@@ -117,7 +117,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-          <p>© {new Date().getFullYear()} JHXT Information Technology Solutions. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} JHXTES Information Technology Solutions. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/about" className="hover:text-gray-300 transition-colors">
               About

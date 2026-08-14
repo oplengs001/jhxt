@@ -20,11 +20,10 @@ export function Header() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About JHXT", href: "/about" },
+    { name: "About JHXTES", href: "/about" },
     { name: "Service Pillars", href: "/services" },
     { name: "Projects & Proof", href: "/projects" },
     { name: "Managed IT", href: "/managed-services" },
-    { name: "Invoices", href: "/invoices" },
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -50,7 +49,7 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold tracking-wider font-serif text-white flex items-center gap-1">
-                JHXT <span className="w-1.5 h-1.5 bg-[#38bdf8] rounded-full inline-block" />
+                JHXTES <span className="w-1.5 h-1.5 bg-[#38bdf8] rounded-full inline-block" />
               </span>
               <span className="text-[10px] tracking-widest text-[#94a3b8] uppercase font-mono">
                 IT Solutions

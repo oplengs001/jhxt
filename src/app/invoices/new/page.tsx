@@ -37,9 +37,8 @@ export default function CreateInvoicePage() {
     new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
   );
   const [notes, setNotes] = useState(
-    "Thank you for choosing JHXT IT Solutions! Payment is due within 15 days of invoice date."
+    "Thank you for choosing JHXTES IT Solutions! Payment is due within 15 days of invoice date."
   );
-  const [taxPercent, setTaxPercent] = useState<number>(12); // Default 12% VAT
   const [discountAmt, setDiscountAmt] = useState<number>(0);
 
   // Line items
@@ -109,9 +108,7 @@ export default function CreateInvoicePage() {
 
   // Computations
   const subtotal = items.reduce((sum, item) => sum + (item.quantity * item.unitPrice || 0), 0);
-  const taxableAmount = Math.max(0, subtotal - (discountAmt || 0));
-  const taxAmount = (taxableAmount * (taxPercent || 0)) / 100;
-  const grandTotal = Math.max(0, taxableAmount + taxAmount);
+  const grandTotal = Math.max(0, subtotal - (discountAmt || 0));
 
   // Quick Create Client
   const handleCreateClient = async (e: React.FormEvent) => {
@@ -171,7 +168,7 @@ export default function CreateInvoicePage() {
           issueDate,
           dueDate,
           notes,
-          taxPercent,
+          taxPercent: 0,
           discountAmt,
           items,
         }),
@@ -485,22 +482,7 @@ export default function CreateInvoicePage() {
               </span>
             </div>
 
-            <div className="flex justify-between items-center text-gray-300">
-              <span className="flex items-center gap-1">
-                VAT / Tax (%):
-                <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={taxPercent}
-                  onChange={(e) => setTaxPercent(parseFloat(e.target.value) || 0)}
-                  className="w-16 px-2 py-1 rounded bg-white/5 border border-white/10 text-right text-xs text-white"
-                />
-              </span>
-              <span className="font-mono text-gray-300">
-                +₱{taxAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-              </span>
-            </div>
+
 
             <div className="flex justify-between text-base font-bold text-white border-t border-white/10 pt-3">
               <span>Grand Total (PHP):</span>

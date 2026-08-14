@@ -228,7 +228,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="font-bold text-white block">Phone Lines</span>
-                    <span className="text-gray-300">+63 (045) 900-JHXT / +63 917-123-JHXT</span>
+                    <span className="text-gray-300">+63 (045) 900-JHXTES / +63 917-123-JHXTES</span>
                   </div>
                 </div>
 

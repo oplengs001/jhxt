@@ -138,7 +138,7 @@ export default function Home() {
               href="/about"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm transition-all"
             >
-              Learn About JHXT
+              Learn About JHXTES
             </Link>
           </div>
         </div>

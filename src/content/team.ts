@@ -69,7 +69,7 @@ export const pmbokStages: PMBOKStage[] = [
     step: 3,
     title: "Develop",
     tagline: "Pre-Staging & Configuration",
-    description: "Pre-configure routers, firewalls, cameras, and access control servers in JHXT lab environments prior to field deployment.",
+    description: "Pre-configure routers, firewalls, cameras, and access control servers in JHXTES lab environments prior to field deployment.",
     activities: [
       "Firmware Updates & Flashing",
       "IP Address Scheme Assignment",

@@ -4,8 +4,8 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { DiagonalLines } from "@/components/DiagonalLines";
 
 export const metadata = {
-  title: "Projects & Proof of Work — JHXT Case Studies",
-  description: "Explore real-world IT and security deployments by JHXT: Tarlac City Command Center, Barangay CCTV Networks, and Commercial Store installations.",
+  title: "Projects & Proof of Work — JHXTES Case Studies",
+  description: "Explore real-world IT and security deployments by JHXTES: Tarlac City Command Center, Barangay CCTV Networks, and Commercial Store installations.",
 };
 
 export default function ProjectsPage() {

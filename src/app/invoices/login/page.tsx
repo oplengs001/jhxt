@@ -45,7 +45,7 @@ export default function LoginPage() {
             <Shield className="w-6 h-6 text-white" />
           </div>
           <h1 className="text-2xl font-bold font-serif text-white tracking-wide">
-            JHXT Admin Portal
+            JHXTES Admin Portal
           </h1>
           <p className="text-xs text-gray-400 font-light">
             Invoice Ninja Module — Sign in to manage invoices & clients

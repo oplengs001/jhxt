@@ -250,7 +250,7 @@ export default function InvoiceDetailPage({
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6 border-b border-white/10 pb-8">
           <div>
             <h2 className="text-2xl font-bold font-serif text-white tracking-wider">
-              JHXT IT SOLUTIONS
+              JHXTES IT SOLUTIONS
             </h2>
             <p className="text-xs text-[#38bdf8] font-mono mt-0.5">
               Architecture • Vision • Security • Managed Services
@@ -359,10 +359,7 @@ export default function InvoiceDetailPage({
                 <span>-{formatPHP(invoice.discountAmt)}</span>
               </div>
             )}
-            <div className="flex justify-between text-gray-400">
-              <span>VAT / Tax ({invoice.taxPercent}%):</span>
-              <span className="text-white">+{formatPHP(invoice.taxAmt)}</span>
-            </div>
+
             <div className="flex justify-between text-base font-bold text-white border-t border-white/10 pt-2">
               <span>Grand Total:</span>
               <span className="text-[#38bdf8]">{formatPHP(invoice.totalAmt)}</span>

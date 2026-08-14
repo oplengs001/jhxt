@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Managed IT Services & Outsourcing — JHXT",
-  description: "Computer repair, server maintenance, backup & recovery, website development, onsite technician support, and 24/7 SLA help desk agreements.",
+  title: "Managed IT Services & Outsourcing — JHXTES",
+  description: "End-to-end IT support, server management, helpdesk operations, cloud backups, and custom SLA agreements for Philippine enterprises.",
 };
 
 export default function ManagedServicesPage() {
