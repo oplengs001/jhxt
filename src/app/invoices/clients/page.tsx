@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -28,7 +28,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-export default function ClientsManagementPage() {
+function ClientsManagementContent() {
   const searchParams = useSearchParams();
   const initialClientId = searchParams.get("clientId");
 
@@ -783,6 +783,15 @@ export default function ClientsManagementPage() {
   );
 }
 
+export default function ClientsManagementPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs text-gray-400">Loading client directory...</div>}>
+      <ClientsManagementContent />
+    </Suspense>
+  );
+}
+
 function setNewCompanyOr(setter: (v: string) => void, val: string) {
   setter(val);
 }
+

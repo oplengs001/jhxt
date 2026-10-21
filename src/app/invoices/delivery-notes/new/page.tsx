@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -22,7 +22,7 @@ interface DeliveryItem {
   condition: string;
 }
 
-export default function CreateDeliveryNotePage() {
+function CreateDeliveryNoteForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClientId = searchParams.get("clientId");
@@ -355,3 +355,12 @@ export default function CreateDeliveryNotePage() {
     </div>
   );
 }
+
+export default function CreateDeliveryNotePage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs text-gray-400">Loading delivery note form...</div>}>
+      <CreateDeliveryNoteForm />
+    </Suspense>
+  );
+}
+

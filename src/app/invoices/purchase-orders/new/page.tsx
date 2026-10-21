@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -22,7 +22,7 @@ interface POItem {
   unit: string;
 }
 
-export default function CreatePurchaseOrderPage() {
+function CreatePurchaseOrderForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClientId = searchParams.get("clientId");
@@ -418,3 +418,12 @@ export default function CreatePurchaseOrderPage() {
     </div>
   );
 }
+
+export default function CreatePurchaseOrderPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs text-gray-400">Loading purchase order form...</div>}>
+      <CreatePurchaseOrderForm />
+    </Suspense>
+  );
+}
+
