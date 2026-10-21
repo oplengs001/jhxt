@@ -18,8 +18,13 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/api/invoices") || pathname.startsWith("/api/clients") || pathname.startsWith("/api/items")) {
-    // Allow public portal API calls if needed or protect API routes
+  // Protect /api/invoices, /api/documents, /api/items, and /api/clients (except public POST client creation)
+  if (
+    pathname.startsWith("/api/invoices") ||
+    pathname.startsWith("/api/documents") ||
+    pathname.startsWith("/api/items") ||
+    (pathname.startsWith("/api/clients") && request.method !== "POST")
+  ) {
     if (!sessionToken && !pathname.includes("/portal/")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -34,5 +39,6 @@ export const config = {
     "/api/invoices/:path*",
     "/api/clients/:path*",
     "/api/items/:path*",
+    "/api/documents/:path*",
   ],
 };

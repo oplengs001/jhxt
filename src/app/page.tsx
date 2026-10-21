@@ -12,6 +12,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap, checkReducedMotion } from "@/lib/gsap";
 import { ArrowRight, PhoneCall, Layers, ShieldCheck, Cpu } from "lucide-react";
 import { TechPlaceholder } from "@/components/TechPlaceholder";
+import { HomeClientRegistration } from "@/components/HomeClientRegistration";
 
 export default function Home() {
   const serviceGridRef = useRef<HTMLDivElement>(null);
@@ -238,7 +239,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Call-To-Action Banner */}
+      {/* 6. Client Onboarding & Registration */}
+      <HomeClientRegistration />
+
+      {/* 7. Call-To-Action Banner */}
       <section className="py-20 bg-gradient-to-r from-[#0f192e] via-[#1e3a8a] to-[#0f192e] relative overflow-hidden border-y border-white/10">
         <div className="absolute inset-0 bg-radial-glow opacity-50 pointer-events-none" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

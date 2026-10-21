@@ -58,8 +58,11 @@ model Client {
   phone     String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  invoices  Invoice[]
-  leads     Lead[]
+  invoices            Invoice[]
+  leads               Lead[]
+  warrantyCertificates WarrantyCertificate[]
+  deliveryNotes       DeliveryNote[]
+  purchaseOrders      PurchaseOrder[]
 }
 
 model ProductItem {
@@ -159,4 +162,74 @@ model InvoicePayment {
   reference   String?
   notes       String?
   createdAt   DateTime @default(now())
+}
+
+model WarrantyCertificate {
+  id              String   @id @default(uuid())
+  refNumber       String   @unique
+  docNumberCOC    String?
+  clientId        String
+  client          Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  projectName     String?  @default("CCTV Hardware Supply & Technical Services")
+  issueDate       DateTime @default(now())
+  validUntil      DateTime
+  coveragePeriod  String   @default("1-Year Standard Hardware Warranty")
+  status          String   @default("Active")
+  serviceProvider String   @default("JHXT Information Technology Solutions")
+  providerEmail   String   @default("sales@jhxtes.com")
+  providerPhone   String   @default("09602506456")
+  issuedByName    String   @default("JAY HENDRIX TOLEDO")
+  issuedByTitle   String   @default("Lead Technical Representative")
+  clientRepName   String?  @default("Authorized Representative")
+  terms           String?
+  items           Json     // Array of equipment items: { description, quantity, coverage, status, condition }
+  serials         Json?    // Array of device serials: { id, cameraSerial, hddSerial, nvrSerial, notes }
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([refNumber])
+  @@index([clientId])
+}
+
+model DeliveryNote {
+  id              String   @id @default(uuid())
+  deliveryNumber  String   @unique
+  clientId        String
+  client          Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  deliveryDate    DateTime @default(now())
+  dueDate         DateTime?
+  poNumber        String?
+  invoiceNumber   String?
+  deliveredByName String   @default("JAY HENDRIX TOLEDO")
+  receivedByName  String?
+  notes           String?
+  items           Json     // Array of items: { itemCode, description, quantity, unit, condition }
+  status          String   @default("DELIVERED")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([deliveryNumber])
+  @@index([clientId])
+}
+
+model PurchaseOrder {
+  id              String   @id @default(uuid())
+  poNumber        String   @unique
+  clientId        String
+  client          Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  orderDate       DateTime @default(now())
+  deliveryDate    DateTime?
+  status          String   @default("PENDING")
+  notes           String?
+  taxPercent      Float    @default(0)
+  subtotalAmt     Int      @default(0) // in centavos
+  taxAmt          Int      @default(0) // in centavos
+  totalAmt        Int      @default(0) // in centavos
+  paidAmt         Int      @default(0) // in centavos
+  items           Json     // Array of items: { itemCode, description, unitCost, quantity, unit, lineTotal }
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([poNumber])
+  @@index([clientId])
 }

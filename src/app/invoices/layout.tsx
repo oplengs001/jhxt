@@ -16,6 +16,9 @@ import {
   ExternalLink,
   Plus,
   Badge,
+  ShieldCheck,
+  Truck,
+  ClipboardList,
 } from "lucide-react";
 
 export default function InvoicesLayout({ children }: { children: React.ReactNode }) {
@@ -55,8 +58,11 @@ export default function InvoicesLayout({ children }: { children: React.ReactNode
 
   const navItems = [
     { name: "Invoices", href: "/invoices", icon: LayoutDashboard },
-    { name: "Sales Leads", href: "/invoices/leads", icon: Target },
     { name: "Clients", href: "/invoices/clients", icon: Users },
+    { name: "Warranty & Turnover", href: "/invoices/warranty", icon: ShieldCheck },
+    { name: "Delivery Notes", href: "/invoices/delivery-notes", icon: Truck },
+    { name: "Purchase Orders", href: "/invoices/purchase-orders", icon: ClipboardList },
+    { name: "Sales Leads", href: "/invoices/leads", icon: Target },
     { name: "Saved Items", href: "/invoices/items", icon: Package },
   ];
 
@@ -124,7 +130,17 @@ export default function InvoicesLayout({ children }: { children: React.ReactNode
           {navItems.map((item) => {
             const isActive =
               item.href === "/invoices"
-                ? pathname === "/invoices" || (pathname.startsWith("/invoices/") && !pathname.startsWith("/invoices/leads") && !pathname.startsWith("/invoices/clients") && !pathname.startsWith("/invoices/items") && !pathname.startsWith("/invoices/login") && !pathname.startsWith("/invoices/portal") && !pathname.startsWith("/invoices/new"))
+                ? pathname === "/invoices" ||
+                  (pathname.startsWith("/invoices/") &&
+                    !pathname.startsWith("/invoices/leads") &&
+                    !pathname.startsWith("/invoices/clients") &&
+                    !pathname.startsWith("/invoices/items") &&
+                    !pathname.startsWith("/invoices/login") &&
+                    !pathname.startsWith("/invoices/portal") &&
+                    !pathname.startsWith("/invoices/new") &&
+                    !pathname.startsWith("/invoices/warranty") &&
+                    !pathname.startsWith("/invoices/delivery-notes") &&
+                    !pathname.startsWith("/invoices/purchase-orders"))
                 : pathname.startsWith(item.href);
             const Icon = item.icon;
 

@@ -26,7 +26,12 @@ export async function GET(req: Request) {
       orderBy: { createdAt: "desc" },
       include: {
         _count: {
-          select: { invoices: true },
+          select: {
+            invoices: true,
+            warrantyCertificates: true,
+            deliveryNotes: true,
+            purchaseOrders: true,
+          },
         },
       },
     });
@@ -40,11 +45,6 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const body = await req.json();
     const { name, email, company, address, phone } = body;
 

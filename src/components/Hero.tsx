@@ -105,6 +105,12 @@ export function Hero() {
           >
             Request Engineering Quote
           </Link>
+          <a
+            href="#register-client"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-gray-200 hover:text-white font-medium text-sm transition-all"
+          >
+            + Register New Client
+          </a>
         </div>
 
         {/* Hero Highlights Pill Grid */}
