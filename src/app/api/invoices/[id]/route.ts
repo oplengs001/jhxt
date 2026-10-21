@@ -78,6 +78,7 @@ export async function PATCH(
         return {
           description: item.description?.trim() || "Item",
           quantity: qty,
+          unit: item.unit?.trim() || "pcs",
           unitPrice: unitPriceCents,
           totalPrice: lineTotalCents,
           sortOrder: idx,

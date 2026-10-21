@@ -329,7 +329,14 @@ export default function InvoiceDetailPage({
                 {invoice.items?.map((item: any) => (
                   <tr key={item.id}>
                     <td className="px-4 py-3 font-medium text-white">{item.description}</td>
-                    <td className="px-4 py-3 text-center font-mono">{item.quantity}</td>
+                    <td className="px-4 py-3 text-center font-mono">
+                      <span>{item.quantity}</span>
+                      {item.unit && (
+                        <span className="text-gray-400 text-xs ml-1 font-sans">
+                          {item.unit}
+                        </span>
+                      )}
+                    </td>
                     <td className="px-4 py-3 text-right font-mono">{formatPHP(item.unitPrice)}</td>
                     <td className="px-4 py-3 text-right font-mono font-bold text-white">
                       {formatPHP(item.totalPrice)}

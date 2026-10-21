@@ -15,13 +15,33 @@ import {
   Send,
   AlertCircle,
   X,
+  Layers,
+  Check,
 } from "lucide-react";
 
 interface LineItem {
   description: string;
   quantity: number;
+  unit: string;
   unitPrice: number; // in Pesos
 }
+
+const DEFAULT_QUANTITY_TYPES = [
+  "pcs",
+  "roll",
+  "lot",
+  "by roll",
+  "by pcs",
+  "by lot",
+  "box",
+  "unit",
+  "set",
+  "meter",
+  "node",
+  "pack",
+  "month",
+  "hour",
+];
 
 export default function CreateInvoicePage() {
   const router = useRouter();
@@ -41,9 +61,15 @@ export default function CreateInvoicePage() {
   );
   const [discountAmt, setDiscountAmt] = useState<number>(0);
 
+  // Custom Quantity Types (persisted for future use)
+  const [customUnits, setCustomUnits] = useState<string[]>([]);
+  const [showAddUnitModal, setShowAddUnitModal] = useState(false);
+  const [newUnitInput, setNewUnitInput] = useState("");
+  const [targetRowForUnit, setTargetRowForUnit] = useState<number | null>(null);
+
   // Line items
   const [items, setItems] = useState<LineItem[]>([
-    { description: "", quantity: 1, unitPrice: 0 },
+    { description: "", quantity: 1, unit: "pcs", unitPrice: 0 },
   ]);
 
   // Saved Items search popup state per row
@@ -61,6 +87,21 @@ export default function CreateInvoicePage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
+  // Load custom quantity types from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("jhxt_custom_quantity_types");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setCustomUnits(parsed);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load custom units:", e);
+    }
+  }, []);
+
   // Load clients and product items
   useEffect(() => {
     fetch("/api/clients")
@@ -75,13 +116,68 @@ export default function CreateInvoicePage() {
     fetch("/api/items")
       .then((res) => res.json())
       .then((data) => {
-        if (data.items) setProductItems(data.items);
+        if (data.items) {
+          setProductItems(data.items);
+          // Auto-harvest any units saved in existing catalog items
+          const catalogUnits: string[] = data.items
+            .map((it: any) => it.unit?.trim())
+            .filter((u: string) => Boolean(u) && !DEFAULT_QUANTITY_TYPES.includes(u));
+          if (catalogUnits.length > 0) {
+            setCustomUnits((prev) => {
+              const merged = Array.from(new Set([...prev, ...catalogUnits]));
+              try {
+                localStorage.setItem("jhxt_custom_quantity_types", JSON.stringify(merged));
+              } catch (e) {}
+              return merged;
+            });
+          }
+        }
       });
   }, []);
 
+  // Compute all available quantity units
+  const allQuantityUnits = Array.from(
+    new Set([
+      ...DEFAULT_QUANTITY_TYPES,
+      ...customUnits,
+      ...items.map((it) => it.unit).filter(Boolean),
+    ])
+  );
+
+  const handleAddCustomUnit = (unitToAdd?: string) => {
+    const clean = (unitToAdd || newUnitInput).trim();
+    if (!clean) return;
+
+    const updated = Array.from(new Set([...customUnits, clean]));
+    setCustomUnits(updated);
+    try {
+      localStorage.setItem("jhxt_custom_quantity_types", JSON.stringify(updated));
+    } catch (e) {
+      console.error("Failed to persist custom quantity type:", e);
+    }
+
+    if (targetRowForUnit !== null && targetRowForUnit !== undefined && items[targetRowForUnit]) {
+      handleItemChange(targetRowForUnit, "unit", clean);
+    }
+
+    setNewUnitInput("");
+    setShowAddUnitModal(false);
+    setTargetRowForUnit(null);
+  };
+
+  const handleDeleteCustomUnit = (unitToRemove: string) => {
+    const updated = customUnits.filter((u) => u !== unitToRemove);
+    setCustomUnits(updated);
+    try {
+      localStorage.setItem("jhxt_custom_quantity_types", JSON.stringify(updated));
+    } catch (e) {
+      console.error("Failed to remove custom unit:", e);
+    }
+  };
+
   // Handlers for line items
   const handleAddItemRow = () => {
-    setItems([...items, { description: "", quantity: 1, unitPrice: 0 }]);
+    setItems([...items, { description: "", quantity: 1, unit: "pcs", unitPrice: 0 }]);
   };
 
   const handleRemoveItemRow = (index: number) => {
@@ -97,9 +193,14 @@ export default function CreateInvoicePage() {
 
   const selectSavedItem = (index: number, product: any) => {
     const updated = [...items];
+    const prodUnit = product.unit?.trim() || "pcs";
+    if (prodUnit && !DEFAULT_QUANTITY_TYPES.includes(prodUnit) && !customUnits.includes(prodUnit)) {
+      handleAddCustomUnit(prodUnit);
+    }
     updated[index] = {
       description: product.description || product.name,
       quantity: 1,
+      unit: prodUnit,
       unitPrice: product.unitPrice / 100, // convert centavos to Pesos
     };
     setItems(updated);
@@ -299,31 +400,56 @@ export default function CreateInvoicePage() {
           </div>
         </div>
 
-        {/* Line Items Table with Item Picker */}
+        {/* Line Items Table with Item Picker and Quantity Types */}
         <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-white font-serif">Line Items</h3>
-            <span className="text-[11px] text-gray-400">
-              💡 Tip: Click <span className="text-[#38bdf8]">Pick Saved Item</span> to load pre-configured products/services
-            </span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 className="text-sm font-semibold text-white font-serif">Line Items</h3>
+              <p className="text-[11px] text-gray-400">
+                Configure quantity, customizable unit types (e.g. by roll, by pcs, by lot), and pricing
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setTargetRowForUnit(null);
+                  setShowAddUnitModal(true);
+                }}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-[#38bdf8] font-medium transition-all"
+                title="Manage and create custom quantity units"
+              >
+                <Layers className="w-3.5 h-3.5" /> Manage Quantity Types
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Table Header */}
+          <div className="hidden md:flex items-center gap-3 px-3.5 py-1 text-[11px] font-mono uppercase text-gray-400">
+            <div className="flex-1">Description / Service</div>
+            <div className="w-20 text-center">Qty</div>
+            <div className="w-28 text-center">Type / Unit</div>
+            <div className="w-32 text-right">Unit Price (₱)</div>
+            <div className="w-32 text-right">Line Total</div>
+            <div className="w-8"></div>
           </div>
 
           <div className="space-y-3">
             {items.map((item, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-start md:items-center gap-3 relative"
+                className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-start md:items-center gap-3 relative transition-all hover:border-white/20"
               >
                 {/* Description & Item Picker */}
                 <div className="flex-1 w-full space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] text-gray-400">Description / Service</span>
+                    <span className="text-[11px] text-gray-400 md:hidden font-medium">Description / Service</span>
                     <button
                       type="button"
                       onClick={() =>
                         setActiveSearchRow(activeSearchRow === idx ? null : idx)
                       }
-                      className="text-[11px] text-[#38bdf8] hover:underline inline-flex items-center gap-1 font-medium"
+                      className="text-[11px] text-[#38bdf8] hover:underline inline-flex items-center gap-1 font-medium ml-auto"
                     >
                       <Package className="w-3 h-3" /> Pick Saved Item
                     </button>
@@ -363,16 +489,26 @@ export default function CreateInvoicePage() {
                             >
                               <div>
                                 <div className="font-semibold text-white">{prod.name}</div>
-                                {prod.category && (
-                                  <span className="text-[10px] text-[#38bdf8]">
-                                    {prod.category}
+                                <div className="flex items-center gap-2 mt-0.5">
+                                  {prod.category && (
+                                    <span className="text-[10px] text-[#38bdf8]">
+                                      {prod.category}
+                                    </span>
+                                  )}
+                                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-gray-300 font-mono">
+                                    {prod.unit || "pcs"}
                                   </span>
-                                )}
+                                </div>
                               </div>
-                              <div className="font-mono font-bold text-emerald-400">
-                                ₱{(prod.unitPrice / 100).toLocaleString("en-US", {
-                                  minimumFractionDigits: 2,
-                                })}
+                              <div className="text-right">
+                                <div className="font-mono font-bold text-emerald-400">
+                                  ₱{(prod.unitPrice / 100).toLocaleString("en-US", {
+                                    minimumFractionDigits: 2,
+                                  })}
+                                </div>
+                                <div className="text-[10px] text-gray-400 font-mono">
+                                  per {prod.unit || "pcs"}
+                                </div>
                               </div>
                             </div>
                           ))
@@ -382,23 +518,53 @@ export default function CreateInvoicePage() {
                   )}
                 </div>
 
-                {/* Quantity */}
-                <div className="w-full md:w-24 space-y-1">
-                  <span className="text-[11px] text-gray-400 md:hidden">Qty</span>
-                  <input
-                    type="number"
-                    min="0.1"
-                    step="any"
-                    value={item.quantity}
-                    onChange={(e) =>
-                      handleItemChange(idx, "quantity", parseFloat(e.target.value) || 0)
-                    }
-                    className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-xs text-center focus:outline-none focus:border-[#2563eb]"
-                  />
+                {/* Quantity & Unit Type Wrapper */}
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                  {/* Quantity */}
+                  <div className="flex-1 md:w-20 space-y-1">
+                    <span className="text-[11px] text-gray-400 md:hidden">Qty</span>
+                    <input
+                      type="number"
+                      min="0.01"
+                      step="any"
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleItemChange(idx, "quantity", parseFloat(e.target.value) || 0)
+                      }
+                      className="w-full px-2.5 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-xs text-center font-mono focus:outline-none focus:border-[#2563eb]"
+                      placeholder="1"
+                    />
+                  </div>
+
+                  {/* Unit / Type of Quantity */}
+                  <div className="flex-1 md:w-28 space-y-1">
+                    <span className="text-[11px] text-gray-400 md:hidden">Type</span>
+                    <select
+                      value={item.unit || "pcs"}
+                      onChange={(e) => {
+                        if (e.target.value === "__ADD_NEW__") {
+                          setTargetRowForUnit(idx);
+                          setShowAddUnitModal(true);
+                        } else {
+                          handleItemChange(idx, "unit", e.target.value);
+                        }
+                      }}
+                      className="w-full px-2 py-2 rounded-lg bg-[#0a1120] border border-white/10 text-white text-xs focus:outline-none focus:border-[#2563eb] cursor-pointer"
+                    >
+                      {allQuantityUnits.map((u) => (
+                        <option key={u} value={u} className="bg-[#0a1120] text-white">
+                          {u}
+                        </option>
+                      ))}
+                      <option value="__ADD_NEW__" className="bg-[#1e293b] text-[#38bdf8] font-semibold">
+                        + Add Custom...
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
                 {/* Unit Price (PHP) */}
-                <div className="w-full md:w-36 space-y-1">
+                <div className="w-full md:w-32 space-y-1">
                   <span className="text-[11px] text-gray-400 md:hidden">Unit Price (₱)</span>
                   <input
                     type="number"
@@ -408,12 +574,13 @@ export default function CreateInvoicePage() {
                     onChange={(e) =>
                       handleItemChange(idx, "unitPrice", parseFloat(e.target.value) || 0)
                     }
-                    className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-xs text-right focus:outline-none focus:border-[#2563eb]"
+                    className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-xs text-right font-mono focus:outline-none focus:border-[#2563eb]"
                   />
                 </div>
 
                 {/* Line Total */}
-                <div className="w-full md:w-36 text-right font-mono font-bold text-white text-xs py-2 shrink-0">
+                <div className="w-full md:w-32 text-right font-mono font-bold text-white text-xs py-2 shrink-0">
+                  <span className="text-gray-400 font-sans md:hidden text-[11px] mr-2">Total:</span>
                   ₱{(item.quantity * item.unitPrice || 0).toLocaleString("en-US", {
                     minimumFractionDigits: 2,
                   })}
@@ -424,7 +591,8 @@ export default function CreateInvoicePage() {
                   type="button"
                   onClick={() => handleRemoveItemRow(idx)}
                   disabled={items.length === 1}
-                  className="p-2 text-gray-500 hover:text-red-400 disabled:opacity-20 shrink-0"
+                  className="p-2 text-gray-500 hover:text-red-400 disabled:opacity-20 shrink-0 self-center"
+                  title="Remove row"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -432,13 +600,19 @@ export default function CreateInvoicePage() {
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={handleAddItemRow}
-            className="inline-flex items-center gap-1.5 text-xs text-[#38bdf8] hover:underline font-semibold pt-1"
-          >
-            <Plus className="w-4 h-4" /> Add Another Line Item
-          </button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+            <button
+              type="button"
+              onClick={handleAddItemRow}
+              className="inline-flex items-center gap-1.5 text-xs text-[#38bdf8] hover:underline font-semibold"
+            >
+              <Plus className="w-4 h-4" /> Add Another Line Item
+            </button>
+
+            <span className="text-[11px] text-gray-400">
+              💡 Need a custom unit? Select <span className="text-[#38bdf8] font-medium">+ Add Custom...</span> or click <span className="text-[#38bdf8] font-medium">Manage Quantity Types</span>
+            </span>
+          </div>
         </div>
 
         {/* Calculation & Notes Section */}
@@ -581,6 +755,152 @@ export default function CreateInvoicePage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Custom Quantity Types Modal */}
+      {showAddUnitModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="glass-panel max-w-md w-full p-6 rounded-2xl border border-white/15 space-y-5 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/20">
+                  <Layers className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold font-serif text-white">Quantity Types (Units)</h3>
+                  <p className="text-[11px] text-gray-400">Add or manage unit types for line items</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setShowAddUnitModal(false);
+                  setTargetRowForUnit(null);
+                  setNewUnitInput("");
+                }}
+                className="text-gray-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Quick Suggestions / Examples */}
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-gray-300">
+                Quick Preset Suggestions (Click to add & select)
+              </label>
+              <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto">
+                {[
+                  "by roll",
+                  "by pcs",
+                  "by lot",
+                  "roll",
+                  "pcs",
+                  "lot",
+                  "box",
+                  "spool",
+                  "bundle",
+                  "drum",
+                  "set",
+                  "meter",
+                  "node",
+                  "pack",
+                  "pair",
+                  "license",
+                  "session",
+                  "hour",
+                  "day",
+                ]
+                  .filter((p) => !allQuantityUnits.includes(p))
+                  .map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => handleAddCustomUnit(preset)}
+                      className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#2563eb]/20 hover:border-[#2563eb]/40 border border-white/10 text-gray-300 hover:text-white text-xs transition-all flex items-center gap-1"
+                    >
+                      <Plus className="w-3 h-3 text-[#38bdf8]" /> {preset}
+                    </button>
+                  ))}
+              </div>
+            </div>
+
+            {/* Add Custom Form */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleAddCustomUnit();
+              }}
+              className="space-y-3"
+            >
+              <div>
+                <label className="text-xs font-medium text-gray-300">
+                  Custom Quantity Type Name
+                </label>
+                <div className="flex gap-2 mt-1">
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. by roll, by pcs, by lot, spool, drum"
+                    value={newUnitInput}
+                    onChange={(e) => setNewUnitInput(e.target.value)}
+                    className="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-[#2563eb]"
+                    autoFocus
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs transition-colors shrink-0 flex items-center gap-1.5"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Add Type
+                  </button>
+                </div>
+                <p className="text-[10px] text-gray-400 mt-1.5">
+                  💡 Custom types added here are saved permanently in your browser and will be automatically available for all future invoices.
+                </p>
+              </div>
+            </form>
+
+            {/* Your Custom Types List */}
+            {customUnits.length > 0 && (
+              <div className="space-y-2 border-t border-white/10 pt-3">
+                <span className="text-xs font-medium text-gray-300">
+                  Your Custom Added Types ({customUnits.length})
+                </span>
+                <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto">
+                  {customUnits.map((cu) => (
+                    <span
+                      key={cu}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 border border-white/10 text-xs text-white"
+                    >
+                      <span>{cu}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteCustomUnit(cu)}
+                        className="text-gray-400 hover:text-red-400 transition-colors"
+                        title={`Remove "${cu}"`}
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="pt-2 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowAddUnitModal(false);
+                  setTargetRowForUnit(null);
+                  setNewUnitInput("");
+                }}
+                className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition-colors"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
       )}

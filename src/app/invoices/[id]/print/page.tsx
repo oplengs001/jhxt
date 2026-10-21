@@ -129,7 +129,10 @@ export default function PrintInvoicePage({
               {invoice.items?.map((item: any) => (
                 <tr key={item.id}>
                   <td className="py-3 font-medium">{item.description}</td>
-                  <td className="py-3 text-center font-mono">{item.quantity}</td>
+                  <td className="py-3 text-center font-mono">
+                    {item.quantity}
+                    {item.unit ? ` ${item.unit}` : ""}
+                  </td>
                   <td className="py-3 text-right font-mono">{formatPHP(item.unitPrice)}</td>
                   <td className="py-3 text-right font-mono font-bold text-slate-900">
                     {formatPHP(item.totalPrice)}

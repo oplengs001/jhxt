@@ -143,6 +143,7 @@ model InvoiceItem {
   invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
   description String
   quantity    Float    @default(1)
+  unit        String   @default("pcs")
   unitPrice   Int      // centavos
   totalPrice  Int      // centavos
   sortOrder   Int      @default(0)
