@@ -19,6 +19,7 @@ import {
   Clock,
   Trash2,
 } from "lucide-react";
+import { normalizeSerials, countColumnSerials } from "@/lib/serials";
 
 export default function WarrantyCertificateDetailPage() {
   const params = useParams();
@@ -72,7 +73,8 @@ export default function WarrantyCertificateDetailPage() {
   }
 
   const items = Array.isArray(cert.items) ? cert.items : [];
-  const serials = Array.isArray(cert.serials) ? cert.serials : [];
+  const { subtitle, columns, rows } = normalizeSerials(cert.serials);
+  const columnCounts = countColumnSerials(columns, rows);
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-12">
@@ -216,12 +218,25 @@ export default function WarrantyCertificateDetailPage() {
         </div>
 
         {/* Device Serial Number Inventory Section */}
-        {serials.length > 0 && (
+        {rows.length > 0 && (
           <div className="space-y-3 border-t border-white/10 pt-6">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs font-mono uppercase text-indigo-400 tracking-wider font-semibold flex items-center gap-1.5">
-                <Cpu className="w-3.5 h-3.5" /> Device Serial Number Inventory ({serials.length} units registered)
-              </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-xs font-mono uppercase text-indigo-400 tracking-wider font-semibold flex items-center gap-1.5">
+                  <Cpu className="w-3.5 h-3.5" /> Device Serial Number Inventory ({rows.length} units registered)
+                </h3>
+                <p className="text-[10px] text-gray-400 font-mono mt-0.5">{subtitle}</p>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                {columns.map((col) => (
+                  <span
+                    key={col.id}
+                    className="px-2.5 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] font-mono"
+                  >
+                    {col.label}: <strong className="text-white">{columnCounts[col.id] || 0}</strong>
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="overflow-x-auto border border-white/10 rounded-xl">
@@ -229,18 +244,22 @@ export default function WarrantyCertificateDetailPage() {
                 <thead className="bg-white/5 border-b border-white/10 text-gray-400 uppercase font-mono">
                   <tr>
                     <th className="px-3 py-2.5 text-center w-12">#</th>
-                    <th className="px-4 py-2.5">Camera Serial Number</th>
-                    <th className="px-4 py-2.5">4TB HDD Serial Number</th>
-                    <th className="px-4 py-2.5">NVR Serial Number</th>
+                    {columns.map((col) => (
+                      <th key={col.id} className="px-4 py-2.5">
+                        {col.label}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 text-gray-300 font-mono text-[11px]">
-                  {serials.map((s: any, idx: number) => (
+                  {rows.map((row: any, idx: number) => (
                     <tr key={idx} className="hover:bg-white/5">
                       <td className="px-3 py-2 text-center text-gray-500">{idx + 1}</td>
-                      <td className="px-4 py-2 font-semibold text-white">{s.cameraSerial || "—"}</td>
-                      <td className="px-4 py-2 text-emerald-400">{s.hddSerial || "—"}</td>
-                      <td className="px-4 py-2 text-[#38bdf8]">{s.nvrSerial || "—"}</td>
+                      {columns.map((col) => (
+                        <td key={col.id} className="px-4 py-2 text-gray-200">
+                          {row[col.id] || "—"}
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>

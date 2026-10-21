@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Printer, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { normalizeSerials, countColumnSerials } from "@/lib/serials";
 
 export default function PrintWarrantyCertificatePage() {
   const params = useParams();
@@ -30,11 +31,8 @@ export default function PrintWarrantyCertificatePage() {
   }
 
   const items = Array.isArray(cert.items) ? cert.items : [];
-  const serials = Array.isArray(cert.serials) ? cert.serials : [];
-
-  const cameraCount = serials.filter((s: any) => s.cameraSerial?.trim()).length;
-  const hddCount = serials.filter((s: any) => s.hddSerial?.trim()).length;
-  const nvrCount = serials.filter((s: any) => s.nvrSerial?.trim()).length;
+  const { subtitle, columns, rows } = normalizeSerials(cert.serials);
+  const columnCounts = countColumnSerials(columns, rows);
 
   const formattedDate = new Date(cert.issueDate).toLocaleDateString("en-US", {
     month: "long",
@@ -323,24 +321,31 @@ export default function PrintWarrantyCertificatePage() {
             DEVICE SERIAL NUMBER INVENTORY
           </h1>
           <p className="text-xs font-mono tracking-wider text-slate-600 uppercase font-semibold">
-            SURVEILLANCE & STORAGE HARDWARE ASSET REGISTER
+            {subtitle}
           </p>
         </div>
 
-        {/* KPI Boxes */}
-        <div className="grid grid-cols-3 gap-4 text-xs font-mono">
-          <div className="p-3 border-l-4 border-blue-600 bg-slate-50 space-y-1">
-            <div className="text-[10px] uppercase text-slate-500 font-bold">CAMERA UNITS</div>
-            <div className="text-2xl font-bold text-slate-900">{cameraCount}</div>
-          </div>
-          <div className="p-3 border-l-4 border-emerald-600 bg-slate-50 space-y-1">
-            <div className="text-[10px] uppercase text-slate-500 font-bold">4TB HARD DRIVES</div>
-            <div className="text-2xl font-bold text-slate-900">{hddCount}</div>
-          </div>
-          <div className="p-3 border-l-4 border-purple-600 bg-slate-50 space-y-1">
-            <div className="text-[10px] uppercase text-slate-500 font-bold">NVR RECORDERS</div>
-            <div className="text-2xl font-bold text-slate-900">{nvrCount}</div>
-          </div>
+        {/* KPI Boxes - Dynamically rendered for each custom device column */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-xs font-mono">
+          {columns.map((col, idx) => {
+            const borderColors = [
+              "border-blue-600",
+              "border-emerald-600",
+              "border-purple-600",
+              "border-indigo-600",
+              "border-amber-600",
+              "border-teal-600",
+            ];
+            const borderClass = borderColors[idx % borderColors.length];
+            return (
+              <div key={col.id} className={`p-3 border-l-4 ${borderClass} bg-slate-50 space-y-1`}>
+                <div className="text-[10px] uppercase text-slate-500 font-bold truncate" title={col.label}>
+                  {col.label}
+                </div>
+                <div className="text-2xl font-bold text-slate-900">{columnCounts[col.id] || 0}</div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Cross-Reference Serial Number Table */}
@@ -352,18 +357,18 @@ export default function PrintWarrantyCertificatePage() {
             <thead>
               <tr className="bg-slate-900 text-white uppercase text-[10px]">
                 <th className="p-2 text-center w-10">#</th>
-                <th className="p-2">CAMERA SERIAL NUMBER</th>
-                <th className="p-2">4TB HDD SERIAL NUMBER</th>
-                <th className="p-2">NVR SERIAL NUMBER</th>
+                {columns.map((col) => (
+                  <th key={col.id} className="p-2">{col.label.toUpperCase()}</th>
+                ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 text-slate-800 text-[11px]">
-              {serials.map((s: any, idx: number) => (
+              {rows.map((row: any, idx: number) => (
                 <tr key={idx} className="hover:bg-slate-50">
                   <td className="p-2 text-center text-slate-500 font-bold">{idx + 1}</td>
-                  <td className="p-2 font-medium">{s.cameraSerial || "—"}</td>
-                  <td className="p-2">{s.hddSerial || "—"}</td>
-                  <td className="p-2">{s.nvrSerial || "—"}</td>
+                  {columns.map((col) => (
+                    <td key={col.id} className="p-2 font-medium">{row[col.id] || "—"}</td>
+                  ))}
                 </tr>
               ))}
             </tbody>
@@ -381,7 +386,7 @@ export default function PrintWarrantyCertificatePage() {
 
         {/* Footer */}
         <div className="flex justify-between items-center text-[10px] text-slate-400 font-mono border-t border-slate-200 pt-3">
-          <span>Hardware Asset Register - Surveillance System</span>
+          <span>{subtitle}</span>
           <span>Page 1 of 1</span>
         </div>
       </div>

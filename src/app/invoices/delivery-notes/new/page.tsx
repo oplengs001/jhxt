@@ -39,47 +39,12 @@ export default function CreateDeliveryNotePage() {
   const [receivedByName, setReceivedByName] = useState("");
   const [notes, setNotes] = useState("");
 
-  // Items
+  // Items initialized empty (no prepopulated data)
   const [items, setItems] = useState<DeliveryItem[]>([
     {
-      itemCode: "Belden CAT6",
-      description: "7814A 008(GRY) A1000FT 305MTR CAT6 NOT PLENUM 4pair unshielded datatwist (R) 6 Cable Category 6",
-      quantity: 2,
-      unit: "roll",
-      condition: "Brand New",
-    },
-    {
-      itemCode: "Dahua IPC-HDBW2230-S-S2",
-      description: "2MP, 1/2.7\" CMOS image sensor, low illuminance, high image definition, outputs max 2MP (1920x1080)@25/30fps, built-in IR LED, max 30m, IP67, IK10 protection grade",
-      quantity: 6,
-      unit: "pcs",
-      condition: "Brand New",
-    },
-    {
-      itemCode: "NVR 5232-EL",
-      description: "Dahua 32CH 2HDD 1U NETWORK VIDEO RECORDER, supports Smart H.265+/H.265/H.264+, up to 32MP cameras, 384Mbps bandwidth",
+      itemCode: "",
+      description: "",
       quantity: 1,
-      unit: "unit",
-      condition: "Brand New",
-    },
-    {
-      itemCode: "4TB HDD Skyhawk",
-      description: "SkyHawk surveillance internal hard drive purpose-built for surveillance applications, 24/7 reliability",
-      quantity: 2,
-      unit: "pcs",
-      condition: "Brand New",
-    },
-    {
-      itemCode: "DAHUA 8 PORT POE SWITCH",
-      description: "Support eight 10/100M PoE power supply ports, and two 10/100M uplink ports, 802.3af/at standards",
-      quantity: 1,
-      unit: "unit",
-      condition: "Brand New",
-    },
-    {
-      itemCode: "Dahua 2MP Bullet IP Camera IPC-HFW1220S",
-      description: "1/2.7\" 2Megapixel progressive scan CMOS, 3.6mm fixed lens, max IR LEDs length 30m, IP67, PoE",
-      quantity: 3,
       unit: "pcs",
       condition: "Brand New",
     },

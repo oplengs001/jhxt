@@ -36,46 +36,18 @@ export default function CreatePurchaseOrderPage() {
     new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
   );
   const [status, setStatus] = useState("PENDING");
-  const [notes, setNotes] = useState("Payment Terms: Net 30 days upon delivery and commissioning.");
+  const [notes, setNotes] = useState("");
   const [taxPercent, setTaxPercent] = useState<number>(0);
   const [paidAmt, setPaidAmt] = useState<number>(0);
 
-  // Items initialized with realistic values matching sample performa invoice
+  // Items initialized empty (no prepopulated data)
   const [items, setItems] = useState<POItem[]>([
     {
-      itemCode: "IPC-HDW1239T1",
-      description: "> 2-MP 1/2.8\" CMOS image sensor, low luminance, and high definition image.\n> Outputs max. 2 MP (1920 × 1080)@25/30 fps.\n> Built-in warm light, max illumination 15 m.\n> Built-in MIC. 12 VDC/PoE. IP67 protection.",
-      unitCost: 2150,
-      quantity: 13,
-      unit: "pcs",
-    },
-    {
-      itemCode: "NVR5232-EI",
-      description: "> Supports Smart H.265+, H.265, Smart H.264+ decoding formats.\n> Max. decoding capability: 32 × 1080p@30 fps.\n> Supports IP cameras with a resolution up to 32 MP.\n> AI by Recorder supports 2-channel face detection.",
-      unitCost: 17500,
-      quantity: 1,
-      unit: "unit",
-    },
-    {
-      itemCode: "4TB HDD Skyhawk",
-      description: "SkyHawk leverages Seagate's extensive experience in designing drives purpose-built for surveillance applications. 24/7 reliability.",
-      unitCost: 14500,
-      quantity: 2,
-      unit: "pcs",
-    },
-    {
-      itemCode: "Service",
-      description: "Mobilization / Demobilization & Engineering Supervision, Labor Installation and Installation, Mounting of Equipment devices, Termination, Testing and Commissioning",
-      unitCost: 25550,
-      quantity: 1,
-      unit: "lot",
-    },
-    {
-      itemCode: "VAT",
-      description: "zero rated VaT",
+      itemCode: "",
+      description: "",
       unitCost: 0,
       quantity: 1,
-      unit: "lot",
+      unit: "pcs",
     },
   ]);
 
